@@ -1,0 +1,40 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+
+<div class="">
+		<div class="mr-sm-2 mb-2 col-sm-8" >
+		<div class="mr-sm-2 mb-2 col-sm-8">
+			<form action="{{ url_for('editingShop',mvid=mvid,mvbname=shoppingdetails.name)}}" method="POST">
+				<div class="panel panel-info">
+				  <div class="panel-heading">Edit Shopping Details</div>
+				  <div class="panel-body" style="margin: 10px;background-color:LightSlateGray">
+				  	
+					  <div class="form-group">
+					  	<label class="text-primary" for="name">Enter Shop Name:</label>
+					    <input type="name" class="form-control" name="name" value="{{shoppingdetails.name}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="year">Enter Year Of Manufacturing:</label>
+					    <input type="text" class="form-control" name="year" value="{{shoppingdetails.year}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="color">Enter item Color:</label>
+					    <input type="text" class="form-control" name="color" value="{{shoppingdetails.color}}">
+					  </div>
+					  <div class="text-primary" class="form-group">
+					  	<label for="cc">Enter Brand:</label>
+					    <input type="text" class="form-control" name="brand" value="{{shoppingdetails.brand}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="price">Enter Price:</label>
+					    <input type="text" class="form-control" name="price" value="{{shoppingdetails.price}}">
+					  </div>
+					  				  
+				  </div> 
+				  <div class="panel-footer text-center"><input type="submit" class="btn btn-primary" value="Edit"></div>
+				</div>
+				</form>
+			</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn"style="background-color:LightSlateGray;color:white">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 5px 0px 5px 25px;background-color:LightSlateGray"><a href="{{url_for('addShopDetails',mvname=mve.name)}}" style="text-decoration: none;color:white"><strong>ADD NEW CATEGORY</strong></a></button>
+{% endif %}
+<div class="row" style="margin: 10px;">
+{% for mvb in mvbe %}
+
+	<div class="col-sm-4 text-center">
+		<div class="panel panel-primary">
+			<div class="panel-heading"style="background-color:LightSlateGray">
+				<h4>{{ mvb.name }}</h4>
+			</div>
+			<div class="panel-body text-center"style="background-color:Cornsilk">
+				<table>
+					<tr><th>NAME</th><td>:</td><td><h4>{{ mvb.name }}
+					</h4></td></tr>
+					<tr><th>YEAR</th><td>:</td><td><h4>{{ mvb.year }}</h4></td></tr>
+					<tr><th>COLOR</th><td>:</td><td><h4>{{ mvb.color }}</h4></td></tr>
+					<tr><th>BRAND</th><td>:</td><td><h4>{{ mvb.brand }}</h4></td></tr>
+					<tr><th>PRICE</th><td>:</td><td><h4>{{ mvb.price }}</h4></td></tr>
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer">
+					<button type="button" class="btn btn-info"style="background-color:Teal  "><a href="{{ url_for('editingShop',mvid=mve.id,mvbname=mvb.name) }}"style="color:LavenderBlush">EDIT</a></button>
+					<button type="button" class="btn btn-danger" style="background-color:Indigo"><a href="{{ url_for('deleteShop',mvid=mve.id,mvbname=mvb.name)}}"style="color:LavenderBlush">DELETE</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>
